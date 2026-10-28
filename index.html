@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f6f1e7">
+    <meta name="description" content="A private, local memory garden for the people and stories we carry.">
+    <title>Still Here | A private memory garden</title>
+    <link rel="stylesheet" href="styles.css">
+    <script type="module" src="app.js"></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="wordmark" href="#" aria-label="Still Here home">
+        <span class="wordmark-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+        <span>still here<span class="wordmark-period">.</span></span>
+      </a>
+      <div class="topbar-note"><span class="privacy-dot"></span>Private by nature. Saved on this device.</div>
+      <button class="model-button" id="model-button" type="button">
+        <span class="model-indicator" id="model-indicator" aria-hidden="true"></span>
+        <span id="model-button-label">Load open model</span>
+      </button>
+    </header>
+
+    <main class="page-shell">
+      <section class="intro" aria-labelledby="page-title">
+        <div class="intro-copy">
+          <p class="eyebrow"><span class="eyebrow-rule"></span>A place for the ones we carry</p>
+          <h1 id="page-title">Love leaves<br><em>something behind.</em></h1>
+          <p class="intro-description">Gather a few details. Give a memory somewhere to stay.</p>
+        </div>
+        <div class="intro-art" aria-hidden="true">
+          <div class="sun-disc"></div>
+          <div class="art-horizon"></div>
+          <div class="art-vase"><span></span></div>
+          <div class="art-stem stem-one"><i></i><i></i><b></b></div>
+          <div class="art-stem stem-two"><i></i><i></i><b></b></div>
+          <div class="art-stem stem-three"><i></i><i></i><b></b></div>
+          <span class="art-caption">the things that stay</span>
+        </div>
+      </section>
+
+      <section class="workspace" aria-label="Memory garden workspace">
+        <aside class="archive" aria-labelledby="archive-title">
+          <div class="archive-heading">
+            <div>
+              <p class="section-kicker">Your garden</p>
+              <h2 id="archive-title">Remembered</h2>
+            </div>
+            <button class="icon-button" id="new-entry" type="button" aria-label="Start a new remembrance" title="New remembrance">+</button>
+          </div>
+          <p class="archive-count"><span id="entry-count">0</span> kept close</p>
+          <div class="entry-list" id="entry-list" aria-live="polite"></div>
+          <div class="archive-footnote">
+            <span class="tiny-lock" aria-hidden="true"></span>
+            <p>Your archive belongs to this browser. Nothing is uploaded.</p>
+          </div>
+        </aside>
+
+        <div class="editor">
+          <div class="editor-heading">
+            <div>
+              <p class="section-kicker" id="entry-date">A new page</p>
+              <h2 id="entry-heading">A life, in little details</h2>
+            </div>
+            <span class="saved-label"><span class="saved-dot"></span>Saved here</span>
+          </div>
+
+          <div class="editor-grid">
+            <form class="memory-form" id="memory-form" autocomplete="off">
+              <label class="field-label" for="person-name">Their name</label>
+              <input class="text-input" id="person-name" name="person" maxlength="80" placeholder="The name you call them" autocomplete="off">
+
+              <label class="field-label" for="relationship">How you knew them <span class="optional">optional</span></label>
+              <input class="text-input" id="relationship" name="relationship" maxlength="80" placeholder="Grandmother, dear friend, my brother..." autocomplete="off">
+
+              <label class="field-label" for="memory">A moment you remember</label>
+              <textarea class="text-input memory-input" id="memory" name="memory" maxlength="1800" placeholder="A small scene, a sentence they always said, the way a room felt when they were in it..."></textarea>
+
+              <label class="field-label" for="details">Things they loved <span class="optional">optional</span></label>
+              <textarea class="text-input details-input" id="details" name="details" maxlength="700" placeholder="Orange blossoms, old boleros, Sunday soup..."></textarea>
+
+              <div class="field-label style-label" id="style-label">Shape these words</div>
+              <div class="style-picker" role="group" aria-labelledby="style-label">
+                <button class="style-option is-selected" type="button" data-style="Letter" aria-pressed="true">Letter</button>
+                <button class="style-option" type="button" data-style="Vignette" aria-pressed="false">Vignette</button>
+                <button class="style-option" type="button" data-style="Poem" aria-pressed="false">Poem</button>
+              </div>
+
+              <label class="photo-picker" for="photo-input">
+                <span class="photo-symbol" aria-hidden="true">+</span>
+                <span class="photo-copy"><strong>Add a photograph</strong><small>Optional. Kept only in this browser.</small></span>
+                <input id="photo-input" type="file" accept="image/*">
+              </label>
+              <div class="photo-preview" id="photo-preview" hidden>
+                <img id="photo-image" alt="Selected remembrance photograph">
+                <button class="remove-photo" id="remove-photo" type="button" aria-label="Remove photograph">Remove</button>
+              </div>
+            </form>
+
+            <section class="writing" aria-labelledby="writing-title">
+              <div class="writing-topline">
+                <div>
+                  <p class="section-kicker">Made from your memories</p>
+                  <h3 id="writing-title">A remembrance</h3>
+                </div>
+                <span class="ink-mark" aria-hidden="true">✳</span>
+              </div>
+              <div class="writing-paper">
+                <textarea id="remembrance-output" aria-label="Generated remembrance, editable" placeholder="Your words will find their shape here. You can edit the result and it will be saved with this memory." maxlength="4000"></textarea>
+                <div class="paper-photo" id="paper-photo" hidden><img id="paper-image" alt=""></div>
+                <p class="paper-signoff" id="paper-signoff">Made with care, kept close.</p>
+              </div>
+              <div class="writing-actions">
+                <button class="generate-button" id="generate-button" type="button">
+                  <span class="generate-star" aria-hidden="true">✳</span>
+                  <span id="generate-label">Shape this memory</span>
+                  <span class="button-arrow" aria-hidden="true">&#8594;</span>
+                </button>
+                <button class="copy-button" id="copy-button" type="button" disabled>Copy words</button>
+              </div>
+              <p class="model-note" id="model-note" aria-live="polite">Your notes stay on this device. The model runs here, too.</p>
+            </section>
+          </div>
+        </div>
+      </section>
+      <footer class="page-footer"><span>For the stories still being told.</span><span class="footer-flower" aria-hidden="true">✳</span><span>Made to keep, not to send.</span></footer>
+    </main>
+  </body>
+</html>
